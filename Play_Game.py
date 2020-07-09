@@ -63,7 +63,15 @@ def play_game():
         #Return final score and check arrays
         curr_round_score = fun.round_score(die_array_three,score_check,score_array,final_choice)
         #Final score for game
-        game_score = np.sum(curr_round_score[0])
+        final_score = curr_round_score[0]
+       
+        game_score = np.sum(final_score)
+        
+        if np.sum(final_score[0:6]) >= 63:
+            game_score = game_score+35
+        
+        
+        
         #Final categories that were scored
         final_cat_array = curr_round_score[1]
         
