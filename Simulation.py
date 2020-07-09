@@ -18,6 +18,8 @@ Function dictionary:
 """
 import numpy as np
 import Play_Game as pg
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 #Initialize simulation number and arrays
 simulations = 100
@@ -44,5 +46,22 @@ for k in range(0,len(scores)):
 #Print average and category counter
 print(np.mean(scores))
 print(cat_counter)
+
     
+# Density Plot and Histogram of scores
+sns.distplot(scores, hist=True, kde=True,
+             color = 'darkblue', 
+             hist_kws={'edgecolor':'black'},
+             kde_kws={'linewidth': 4})
+
+#Bar chart for category counter
+
+fig = plt.figure(figsize=(20,4))
+ax = fig.add_axes([0,0,1,1])
+ax.set_xlabel('Scoring Category')
+ax.set_ylabel('Number of Games with No Score')
+ax.set_title('Breakdown of Scoring Category - Games with No Score')
+category = ['One', 'Two', 'Three', 'Four', 'Five','Six','Three of a Kind','Four of a Kind','Small Straight','Large Straight','Full House','Yahtzee','Chance']
+ax.bar(category,cat_counter)
+plt.show()
 
